@@ -17,7 +17,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 import Navigation from '@/components/navigation/navigation.vue'
 import Sidebarlist from '@/components/sidebarlist/sidebarlist.vue'
 
@@ -27,19 +27,19 @@ export default defineComponent({
     Navigation,
     Sidebarlist
   },
-  setup() {
-    const store = useStore();
-    let slideFlag = ref(false)
-    let methods: IMethods = {
-      slideshow:():void => {
-        slideFlag.value = true;
-      },
+  setup () {
+    const store = useStore()
+    const slideFlag = ref(false)
+    const methods: IMethods = {
+      slideshow: ():void => {
+        slideFlag.value = true
+      }
     }
     return {
       ...methods,
       slideFlag
     }
-  },
+  }
 })
 </script>
 <style lang="less" scoped>
@@ -67,7 +67,7 @@ export default defineComponent({
   .slideBtn{
     position: fixed;
     left: .32rem;
-    top:.26rem;
+    top:.42rem;
   }
 }
 </style>
