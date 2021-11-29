@@ -29,3 +29,7 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### test
+
+### 网易云音乐NodeJS版API （克隆NeteaseCloudMusicApi包到项目中提供服务）
+
+https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e5%ae%89%e8%a3%85
