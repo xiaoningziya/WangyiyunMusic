@@ -30,6 +30,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### test
 
-### 网易云音乐NodeJS版API （克隆NeteaseCloudMusicApi包到项目中提供服务）
+### 网易云音乐 NodeJS 版 API （克隆 NeteaseCloudMusicApi 包到项目中提供服务）
 
-https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e5%ae%89%e8%a3%85
+**启动服务**：node app.js
+
+**接口文档**：https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e5%ae%89%e8%a3%85
+
+**git 仓库**：https://github.com/Binaryify/NeteaseCloudMusicApi.git(https)

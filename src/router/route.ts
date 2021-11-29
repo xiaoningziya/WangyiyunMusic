@@ -1,3 +1,5 @@
+const Search = () => import('@/views/home/search/Search.vue')
+
 export const route: Array<any> = [
   {
     path: '/',
@@ -14,6 +16,11 @@ export const route: Array<any> = [
       path: '/home/discovery', // 导航 -- 发现
       name: 'Discovery',
       component: () => import('@/views/home/discovery/index.vue')
+    }, {
+      // 搜索页
+      path: '/home/search',
+      name: 'Search',
+      component: Search
     }, {
       path: '/home/blog', // 导航 -- 博客
       name: 'Blog',
