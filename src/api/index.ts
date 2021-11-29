@@ -1,10 +1,10 @@
-import API from './axios';
+import API from './axios'
 interface IRequestdata {
   [propName: string]: any
 }
 
 // 登录--手机号密码
-export function login_cellphone(params:IRequestdata){
+export function loginCellphone (params:IRequestdata): any {
   return API({
     method: 'get',
     url: '/login/cellphone',
@@ -12,7 +12,7 @@ export function login_cellphone(params:IRequestdata){
   })
 }
 // 退出登录
-export function logout(params:IRequestdata){
+export function logout (params:IRequestdata): any {
   return API({
     method: 'get',
     url: '/logout',
@@ -20,7 +20,7 @@ export function logout(params:IRequestdata){
   })
 }
 // 注册(修改密码)
-export function register_cellphone(params:IRequestdata){
+export function registerCellphone (params:IRequestdata): any {
   return API({
     method: 'get',
     url: '/register/cellphone',
@@ -28,7 +28,7 @@ export function register_cellphone(params:IRequestdata){
   })
 }
 // 发送验证码
-export function captcha_sent(params:IRequestdata){
+export function captchaSent (params:IRequestdata): any {
   return API({
     method: 'get',
     url: '/captcha/sent',

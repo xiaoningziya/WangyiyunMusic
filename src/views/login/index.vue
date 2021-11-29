@@ -11,51 +11,51 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { Toast } from 'vant';
-import { useStore } from 'vuex';
-import { login_cellphone } from '@/api/index'
+import { Toast } from 'vant'
+import { useStore } from 'vuex'
+import { loginCellphone } from '@/api/index'
 
 export default defineComponent({
   name: 'Login',
-  setup() {
-    const router = useRouter();
-    const store = useStore();
-    let loginForm = reactive({
+  setup () {
+    const router = useRouter()
+    const store = useStore()
+    const loginForm = reactive({
       phone: '',
       password: ''
     })
     onMounted(() => {
 
     })
-    let methods:IMethods = {
+    const methods:IMethods = {
       // 去注册
       goregister: (): void => {
         router.push('/register')
       },
       // 手机号码登录
       login: (): void => {
-        if(!loginForm.phone || !loginForm.password){
-          Toast('请输入完整信息');
+        if (!loginForm.phone || !loginForm.password) {
+          Toast('请输入完整信息')
           return
         }
-        login_cellphone(loginForm).then(res=>{
-          console.log('111',res)
-          if(res.data.code === 200){
-            store.commit('SET_USERINFO',res.data);
-            router.push('/home');
-          }else{
-            if(res.data.message){
+        loginCellphone(loginForm).then((res: any) => {
+          console.log('111', res)
+          if (res.data.code === 200) {
+            store.commit('SET_USERINFO', res.data)
+            router.push('/home')
+          } else {
+            if (res.data.message) {
               Toast(res.data.message)
             }
           }
-        });
+        })
       }
     }
     return {
       ...methods,
       loginForm
     }
-  },
+  }
 })
 </script>
 <style lang="less" scoped>

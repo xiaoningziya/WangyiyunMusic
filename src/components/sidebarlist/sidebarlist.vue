@@ -42,32 +42,32 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { logout } from '@/api/index'
-import { useStore } from 'vuex';
-import { Toast } from 'vant';
+import { useStore } from 'vuex'
+import { Toast } from 'vant'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Sidebarlist',
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-    let computedGroup = {
-      isLogin : computed((): boolean => {
+  setup () {
+    const store = useStore()
+    const router = useRouter()
+    const computedGroup = {
+      isLogin: computed((): boolean => {
         return Boolean(store?.state?.userInfo?.token)
       })
     }
-    let methods:IMethods = {
+    const methods:IMethods = {
       loginout: (): void => {
-        logout({}).then(res=>{
-          if(res.data.code === 200){
-            Toast('已退出账号');
-            store.commit('CLEAR_USERINFO');
-            router.push('/login');
+        logout({}).then((res: any) => {
+          if (res.data.code === 200) {
+            Toast('已退出账号')
+            store.commit('CLEAR_USERINFO')
+            router.push('/login')
           }
         })
       },
       gologin: (): void => {
-        router.push('/login');
+        router.push('/login')
       }
     }
     return {
@@ -75,7 +75,7 @@ export default defineComponent({
       ...methods,
       ...computedGroup
     }
-  },
+  }
 })
 </script>
 <style lang="less" scoped>

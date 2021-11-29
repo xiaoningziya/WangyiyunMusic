@@ -11,7 +11,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, watch, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router'
 
 interface INavlist {
   text: string,
@@ -20,57 +20,56 @@ interface INavlist {
   active: HTMLElement,
 }
 
-
 export default defineComponent({
   name: 'Navigation',
-  setup() {
-    let navlist: Array<INavlist> = [{
+  setup () {
+    const navlist: Array<INavlist> = [{
       text: '发现',
       path: '/home/discovery',
       iconfont: require('@/assets/iconfont/navigation/wangyiyunyinyuemusic1193417easyiconnet.svg'),
-      active: require('@/assets/iconfont/navigation/wangyiyunyinyuemusic1193417easyiconnet_a.svg'),
-    },{
+      active: require('@/assets/iconfont/navigation/wangyiyunyinyuemusic1193417easyiconnet_a.svg')
+    }, {
       text: '博客',
       path: '/home/blog',
       iconfont: require('@/assets/iconfont/navigation/radioguangbo.svg'),
-      active: require('@/assets/iconfont/navigation/radioguangbo_a.svg'),
-    },{
+      active: require('@/assets/iconfont/navigation/radioguangbo_a.svg')
+    }, {
       text: '我的',
       path: '/home/my',
       iconfont: require('@/assets/iconfont/navigation/yinle.svg'),
-      active: require('@/assets/iconfont/navigation/yinle_a.svg'),
-    },{
+      active: require('@/assets/iconfont/navigation/yinle_a.svg')
+    }, {
       text: '关注',
       path: '/home/focus',
       iconfont: require('@/assets/iconfont/navigation/geren.svg'),
-      active: require('@/assets/iconfont/navigation/geren_a.svg'),
-    },{
+      active: require('@/assets/iconfont/navigation/geren_a.svg')
+    }, {
       text: '云村',
       path: '/home/yuncun',
       iconfont: require('@/assets/iconfont/navigation/shequ.svg'),
-      active: require('@/assets/iconfont/navigation/shequ_a.svg'),
+      active: require('@/assets/iconfont/navigation/shequ_a.svg')
     }]
-    let router = useRouter();
-    let route = useRoute();
-    let nowRoutePath = ref('/home/discovery')
-    let methods: IMethods = {
+    const router = useRouter()
+    const route = useRoute()
+    const nowRoutePath = ref('/home/discovery')
+    const methods: IMethods = {
       // 点击切换路由
       switchRouter: (path:string): void => {
         router.push(path)
       }
     }
-    let _watch = watch(route,(newRoute,oldRoute) => {
-      if(newRoute.path){
-        nowRoutePath.value = newRoute.path;
+    watch(route, (newRoute) => {
+      if (newRoute.path) {
+        nowRoutePath.value = newRoute.path
       }
-    },{deep:true})
+    }, { deep: true })
 
     return {
       ...methods,
       nowRoutePath,
-      navlist,
+      navlist
     }
-  },
+  }
 })
 </script>
 <style lang="less" scoped>

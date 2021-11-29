@@ -8,9 +8,9 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Yuncun',
-  setup() {
-    
-  },
+  setup () {
+
+  }
 })
 </script>
 <style lang="less" scoped>
