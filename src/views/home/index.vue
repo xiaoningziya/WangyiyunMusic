@@ -7,8 +7,19 @@
     <div class="homeSwitch">
       <Navigation />
     </div>
-    <div class="slideBtn" @click="slideshow">
-      <van-icon color="#555" size="24px" name="bars" />
+    <!-- 展示菜单还是回退 -->
+    <div v-if="store.state.showBack">
+      <div class="slideBtn" @click="goBack">
+        <van-icon color="#555" size="24px" name="revoke" />
+      </div>
+    </div>
+    <div v-else>
+      <div class="slideBtn" @click="slideshow">
+        <van-icon color="#555" size="24px" name="bars" />
+      </div>
+      <van-popup v-model:show="slideFlag" position="left" duration="0.2" :style="{ width: '80%',height: '100%' }">
+        <Sidebarlist />
+      </van-popup>
     </div>
     <van-popup
       v-model:show="slideFlag"
@@ -22,10 +33,10 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, provide } from "vue";
+import { useRouter } from 'vue-router'
 import { useStore } from "vuex";
 import Navigation from "@/components/navigation/navigation.vue";
 import Sidebarlist from "@/components/sidebarlist/sidebarlist.vue";
-
 export default defineComponent({
   name: "Home",
   components: {
@@ -33,19 +44,26 @@ export default defineComponent({
     Sidebarlist,
   },
   setup() {
-    const store = useStore();
-    const userInfo = ref(store.state.userInfo);
-    const userId = ref(store.state.userId);
+    const store = useStore()
+    const router = useRouter()
+    const userInfo = ref(store.state.userInfo)
+    const userId = ref(store.state.userId)
     // 生产‘userInfo’和‘userId’供子节点消费
-    provide("userInfo", userInfo.value);
-    provide("userId", userId.value);
-    let slideFlag = ref(false);
+    provide("userInfo", userInfo.value)
+    provide("userId", userId.value)
+    let slideFlag = ref(false)
     let methods: IMethods = {
       slideshow: (): void => {
-        slideFlag.value = true;
+        slideFlag.value = true
       },
+      // 回退
+      goBack () {
+        store.commit('SHOW_BACK', false)
+        router.go(-1)
+      }
     };
     return {
+      store,
       ...methods,
       slideFlag,
     };
@@ -77,7 +95,7 @@ export default defineComponent({
   .slideBtn {
     position: fixed;
     left: .32rem;
-    top:.42rem;
+    top:.32rem;
   }
 }
 </style>
