@@ -1,0 +1,119 @@
+<template>
+  <div class="Singerlistwrap">
+    <div class="scrollpage">
+      <div class="singerCard" v-for="item in singerData.list" :key="item.id">
+        <div class="avatbox" @click="jumpsongerinfo(item)">
+          <img v-lazy="item.img1v1Url" alt="">
+        </div>
+        <div class="textbox">
+          <div class="name" @click="jumpsongerinfo(item)">
+            {{item.name}}
+          </div>
+          <div class="focusBtn">
+            + 关注
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script lang="ts">
+import { defineComponent, reactive } from 'vue'
+import { ArtistList_TYPE, ArtistList_AREA} from '@/api/enum'
+import { artistList } from '@/api/index'
+import { useRouter } from 'vue-router'
+
+export default defineComponent({
+  name: 'Singerlist',
+  setup () {
+    const router = useRouter();
+    const singerData = reactive({list: []})
+    const methods: IMethods = {
+      getartistList (): void {
+        const reqParams = {
+          limit: 30,
+          offset: 0,
+          initial: -1,
+          type: ArtistList_TYPE['全部'],
+          area: ArtistList_AREA['华语']
+        }
+        artistList(reqParams).then((res: any) => {
+          if(res.data.code === 200){
+            singerData.list = res.data.artists;
+          }
+        })
+      },
+      jumpsongerinfo (): void {
+        router.push('/singerinfo')
+      }
+    }
+    methods.getartistList();
+    return {
+      ...methods,
+      singerData
+    }
+  }
+})
+</script>
+<style lang="less" scoped>
+.Singerlistwrap {
+  width:100%;
+  height:100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: #fff;
+  .scrollpage{
+    width:100%;
+    height:auto;
+    padding: .32rem;
+    box-sizing: border-box;
+    .singerCard{
+      width:100%;
+      height:1rem;
+      display: flex;
+      align-items: center;
+      .avatbox{
+        width:.74rem;
+        height:.74rem;
+        border-radius: 50%;
+        overflow: hidden;
+        img{
+          width:100%;
+          height:auto;
+        }
+      }
+      .textbox{
+        margin-left: .2rem;
+        flex:1;
+        height: 100%;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .name{
+          font-size: .28rem;
+          font-weight: bold;
+          flex:1;
+          text-align: left;
+          padding-left: .2rem;
+          box-sizing: border-box;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+        .focusBtn{
+          width:1rem;
+          height:.4rem;
+          border-radius: .24rem;
+          font-size: .24rem;
+          border:1px solid red;
+          color:red;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+</style>

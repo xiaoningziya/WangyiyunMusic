@@ -40,6 +40,21 @@ export const route: Array<any> = [
     }]
   },
   {
+    path: '/singerlist', // 歌手列表
+    name: 'Singerlist',
+    component: () => import('@/views/singerlist/index.vue')
+  },
+  {
+    path: '/singerinfo', // 歌手介绍页
+    name: 'Singerinfo',
+    component: () => import('@/views/singerinfo/index.vue')
+  },
+  {
+    path: '/hotsonglist', // 歌手热门歌单50首
+    name: 'Hotsonglist',
+    component: () => import('@/views/hotsonglist/index.vue')
+  },
+  {
     path: '/login', // 登录页
     name: 'Login',
     component: () => import('@/views/login/index.vue')

@@ -9,6 +9,7 @@
           <img :src="item.pic" alt="">
         </van-swipe-item>
       </van-swipe>
+      <van-button type="primary" @click="jumpsingerlist">歌手列表</van-button>
     </div>
   </div>
 </template>
@@ -52,6 +53,9 @@ export default defineComponent({
       },
       jumppage (url:string) {
         window.location.href = url
+      },
+      jumpsingerlist(){
+        router.push('/singerlist')
       }
     }
     methods.getbanner()

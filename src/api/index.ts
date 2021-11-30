@@ -72,4 +72,27 @@ export function banner(params: ParamsInterface.IBanner): any {
     params
   })
 }
-
+// 歌手分类列表
+export function artistList (params: ParamsInterface.IArtistList): any {
+  return API({
+    method: 'get',
+    url: '/artist/list',
+    params
+  })
+}
+// 获取歌手描述
+export function artistDesc (params: ParamsInterface.IArtistDesc): any {
+  return API({
+    method: 'get',
+    url: '/artist/desc',
+    params
+  })
+}
+// 获取歌手详情
+export function artistDetail (params: ParamsInterface.IArtistDetail): any {
+  return API({
+    method: 'get',
+    url: '/artist/detail',
+    params
+  })
+}
