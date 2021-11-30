@@ -4,10 +4,10 @@ import createPersistedState from 'vuex-persistedstate'
 export default createStore({
   state: {
     userInfo: {}, // 用户信息
-    userId: ''
+    userId: '',
+    showBack: false // 是否显示回退按钮
   },
   getters: {
-
   },
   mutations: {
     SET_USERINFO: (state, userinfo) => {
@@ -17,6 +17,10 @@ export default createStore({
     CLEAR_USERINFO: (state) => {
       state.userInfo = {}
       state.userId = ''
+    },
+    // 搜索回退按钮是否显示
+    SHOW_BACK: (state, status) => {
+      state.showBack = status
     }
   },
   actions: {
