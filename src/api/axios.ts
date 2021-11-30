@@ -5,17 +5,17 @@ import 'vant/lib/index.css'
 const API = axios.create({
   // withCredentials: true,
   baseURL: 'http://localhost:3000',
-  timeout: 60000
+  timeout: 60000,
 })
 
-// API.interceptors.request.use(
-//   config => {
-//     const URL = config.url
-//     return config
-//   },
-//   error => {
-//   }
-// )
+API.interceptors.request.use(
+  config => {
+    return config
+  },
+  error => {
+
+  }
+)
 
 API.interceptors.response.use(
   res => {
