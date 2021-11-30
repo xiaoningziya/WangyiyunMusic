@@ -6,7 +6,7 @@ export function formatTime (timer: number): string {
 // 防抖
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function debounce (fn: any, delay: number) {
-  let timer: number | null
+  let timer: any
   return function () {
     if (timer) {
       clearTimeout(timer)
