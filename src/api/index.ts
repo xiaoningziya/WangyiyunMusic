@@ -1,4 +1,5 @@
 import API from './axios'
+import * as ParamsInterface from './interface'
 interface IRequestdata {
   [propName: string]: any,
   // uid?: number
@@ -63,3 +64,12 @@ export function userDetail(params: IRequestdata): any {
 //     }
 //   })
 // }
+// 获取Banner
+export function banner(params: ParamsInterface.IBanner): any {
+  return API({
+    method: 'get',
+    url: '/banner',
+    params
+  })
+}
+

@@ -9,8 +9,8 @@ import 'vant/lib/index.css'
 import remConfig from './remConfig/remConfig'
 remConfig()
 
-createApp(App)
-  .use(store)
+const Example = createApp(App)
+Example.use(store)
   .use(router)
   .use(Vant)
   .mount('#app')
