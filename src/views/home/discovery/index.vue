@@ -13,19 +13,28 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { BANNER_TYPE } from '@/api/enum'
 import { banner } from '@/api/index'
+import { defineComponent, reactive, onMounted, ref } from 'vue'
+import { defaultKeywords } from '@/api/search'
 
 export default defineComponent({
   name: 'Discovery',
   setup () {
-    const placeholder = '催眠 最近很火哦'
+    const placeholder = ref('')
     const router = useRouter()
     const store = useStore()
     const bannerData = reactive({list: []})
+
+    onMounted(() => {
+      defaultKeywords().then((res) => {
+        if (res.data.code === 200) {
+          placeholder.value = res.data.data.showKeyword
+        }
+      })
+    })
 
     const methods: IMethods = {
       toSearch () {
@@ -35,17 +44,17 @@ export default defineComponent({
       },
       // 获取轮播图
       getbanner () {
-        banner({type: BANNER_TYPE['iphone']}).then((res: any) => {
-          if(res.data.code === 200){
-            bannerData.list= res.data.banners;
+        banner({ type: BANNER_TYPE.iphone }).then((res: any) => {
+          if (res.data.code === 200) {
+            bannerData.list = res.data.banners
           }
         })
       },
-      jumppage(url:string){
-        window.location.href = url;
+      jumppage (url:string) {
+        window.location.href = url
       }
     }
-    methods.getbanner();
+    methods.getbanner()
 
     return {
       placeholder,
