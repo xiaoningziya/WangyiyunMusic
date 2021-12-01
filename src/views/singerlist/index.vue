@@ -56,6 +56,7 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
+@import url('../../common/common.less');
 .Singerlistwrap {
   width:100%;
   height:100%;
@@ -70,8 +71,7 @@ export default defineComponent({
     .singerCard{
       width:100%;
       height:1rem;
-      display: flex;
-      align-items: center;
+      .DF_AIC();
       .avatbox{
         width:.74rem;
         height:.74rem;
@@ -87,9 +87,7 @@ export default defineComponent({
         flex:1;
         height: 100%;
         border-bottom: 1px solid #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        .DF_JCSB_AIC();
         .name{
           font-size: .28rem;
           font-weight: bold;
@@ -98,8 +96,7 @@ export default defineComponent({
           padding-left: .2rem;
           box-sizing: border-box;
           height: 100%;
-          display: flex;
-          align-items: center;
+          .DF_AIC();
         }
         .focusBtn{
           width:1rem;
@@ -108,9 +105,7 @@ export default defineComponent({
           font-size: .24rem;
           border:1px solid red;
           color:red;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          .DF_JCC_AIC();
         }
       }
     }

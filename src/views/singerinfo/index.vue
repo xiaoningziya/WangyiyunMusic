@@ -91,6 +91,7 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
+@import url('../../common/common.less');
 .singerinfowrap {
   width:100%;
   height:100%;
@@ -121,9 +122,7 @@ export default defineComponent({
         background: #fff;
         box-shadow: 0 0 0.2rem #f4f4f4;
         border-radius: .2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        .DF_FDC_AIC();
         position: relative;
         padding-top: .75rem;
         padding-bottom: .32rem;
@@ -165,9 +164,7 @@ export default defineComponent({
             font-size: .34rem;
             font-weight: bold;
             margin-bottom: .2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            .DF_JCSB_AIC();
             .hotBtn{
               height:.6rem;
             }

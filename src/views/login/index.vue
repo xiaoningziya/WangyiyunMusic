@@ -59,6 +59,7 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
+@import url('../../common/common.less');
 .loginwrap{
   width:100%;
   height:100%;
@@ -66,10 +67,7 @@ export default defineComponent({
   box-sizing: border-box;
   // background: red;
   background: red;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  .DF_FDC_JCFE_AIC();
   .formbox{
     margin-bottom: 2rem;
   }
@@ -81,9 +79,7 @@ export default defineComponent({
     color:red !important;
     border-radius: .4rem;
     font-size: .3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .DF_JCC_AIC();
     font-weight: bold;
     letter-spacing: .06rem;
   }

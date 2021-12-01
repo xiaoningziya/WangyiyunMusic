@@ -125,6 +125,7 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
+@import url('../../common/common.less');
 .registerwrap {
   width: 100%;
   height: 100%;
@@ -132,10 +133,8 @@ export default defineComponent({
   box-sizing: border-box;
   // background: red;
   background: red;
-  display: flex;
-  flex-direction: column;
+  .DF_FDC_AIC();
   justify-content: flex-end;
-  align-items: center;
   .formbox {
     margin-bottom: 2rem;
   }
@@ -148,9 +147,7 @@ export default defineComponent({
     color: red !important;
     border-radius: 0.4rem;
     font-size: 0.3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .DF_JCC_AIC();
     font-weight: bold;
     letter-spacing: 0.06rem;
   }

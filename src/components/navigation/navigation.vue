@@ -73,22 +73,19 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
+@import url('../../common/common.less');
 .navigationwrap{
   width:100%;
   height:100%;
   background: #fff;
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  .DF_AIC();
   border-top: 1px solid #ccc;
   font-size: .24rem;
   .navEvery{
     width:20%;
     height:100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    .DF_FDC_JCC_AIC();
     .iconfont{
       display: inline-block;
       width:.36rem;

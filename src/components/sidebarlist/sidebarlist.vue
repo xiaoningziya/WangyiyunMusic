@@ -79,13 +79,13 @@ export default defineComponent({
 })
 </script>
 <style lang="less" scoped>
+@import url('../../common/common.less');
 .sidebarlistwrap{
   width:100%;
   height:100%;
   padding:.2rem 0;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  .DF_FDC();
   background: #efefef;
   .fixedUser{
     width:100%;
@@ -98,12 +98,9 @@ export default defineComponent({
     padding:.2rem .32rem 0;
     box-sizing: border-box;
     z-index: 99;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    .DF_JCSB_AIC();
     .message{
-      display: flex;
-      align-items: center;
+      .DF_AIC();
       img{
         width:.46rem;
         height:.46rem;

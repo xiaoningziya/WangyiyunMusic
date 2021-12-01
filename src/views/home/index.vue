@@ -71,11 +71,11 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
+@import url('../../common/common.less');
 .homewrap {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  .DF_FDC();
   overflow: hidden;
   .headtopbox {
     width: 100%;

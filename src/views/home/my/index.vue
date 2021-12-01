@@ -53,6 +53,7 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
+@import url('../../../common/common.less');
 .mywrap {
   width: 100%;
   height: 100%;
@@ -84,9 +85,7 @@ export default defineComponent({
         background: #fff;
         border-radius: 0.26rem;
         box-shadow: 0 0 0.2rem #f4f4f4;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        .DF_FDC_AIC();
         .avatBox {
           width: 1.3rem;
           height: 1.3rem;
