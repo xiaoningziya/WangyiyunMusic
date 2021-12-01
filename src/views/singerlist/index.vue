@@ -2,11 +2,11 @@
   <div class="Singerlistwrap">
     <div class="scrollpage">
       <div class="singerCard" v-for="item in singerData.list" :key="item.id">
-        <div class="avatbox" @click="jumpsongerinfo(item)">
+        <div class="avatbox" @click="jumpsongerinfo(item.id)">
           <img v-lazy="item.img1v1Url" alt="">
         </div>
         <div class="textbox">
-          <div class="name" @click="jumpsongerinfo(item)">
+          <div class="name" @click="jumpsongerinfo(item.id)">
             {{item.name}}
           </div>
           <div class="focusBtn">
@@ -43,8 +43,11 @@ export default defineComponent({
           }
         })
       },
-      jumpsongerinfo (): void {
-        router.push('/singerinfo')
+      jumpsongerinfo (id:string | number): void {
+        router.push({
+          path:'/singerinfo',
+          query:{ id }
+        })
       }
     }
     methods.getartistList();

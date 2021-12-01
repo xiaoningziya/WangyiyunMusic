@@ -7,15 +7,25 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import API from '@/api/api'
 
 export default defineComponent({
   name: 'Hotsonglist',
   setup () {
     const router = useRouter();
+    const route = useRoute();
+    const queryId = route.query.id as string
+    
     const methods: IMethods = {
-
+      getartistTopSong () {
+        API.artistTopSong({ id: queryId }).then((res: any) => {
+          console.log('hotsonglist-res',res)
+        })
+      }
     }
+    methods.getartistTopSong();
+
     return {
       ...methods,
     }

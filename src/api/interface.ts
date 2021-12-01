@@ -14,3 +14,6 @@ export interface IArtistDesc {
 export interface IArtistDetail {
   id: number | string
 }
+export interface IArtistTopSong {
+  id: number | string
+}
