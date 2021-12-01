@@ -18,3 +18,19 @@ export function defaultKeywords () {
     url: 'search/default'
   })
 }
+
+// 热搜列表（简略）
+export function hotSearchList () {
+  return API({
+    method: 'get',
+    url: 'search/hot'
+  })
+}
+
+// 热搜列表（详细）
+export function detailSearchList () {
+  return API({
+    method: 'get',
+    url: 'search/hot/detail'
+  })
+}
