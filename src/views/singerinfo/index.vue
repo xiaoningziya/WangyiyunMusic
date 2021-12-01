@@ -46,19 +46,21 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { artistDesc, artistDetail } from '@/api/index'
 
 export default defineComponent({
   name: 'Singerinfo',
   setup () {
-    const router = useRouter();
+    const router = useRouter()
+    const route = useRoute()
+    const queryId:any = route.query.id
     const singerData = reactive({content: []})
     const singerDes = reactive({content: []})
     const methods: IMethods = {
       // 获取歌手描述
       getartistDesc (): void {
-        artistDesc({id: 3684}).then((res: any) => {
+        artistDesc({id: queryId}).then((res: any) => {
           if(res.data.code === 200){
             singerDes.content = res.data;
             console.log('获取歌手描述',res.data)
@@ -67,7 +69,7 @@ export default defineComponent({
       },
       // 获取歌手详情
       getartistDetail (): void {
-        artistDetail({id: 3684}).then((res: any) => {
+        artistDetail({id: queryId}).then((res: any) => {
           if(res.data.code === 200){
             singerData.content = res.data.data;
             console.log('获取歌手详情',res.data.data)
@@ -75,7 +77,12 @@ export default defineComponent({
         })
       },
       jumphotsong (): void {
-        router.push('/hotsonglist')
+        router.push({
+          path: '/hotsonglist',
+          query:{
+            id: queryId
+          }
+        })
       }
     }
 
@@ -166,6 +173,7 @@ export default defineComponent({
             margin-bottom: .2rem;
             .DF_JCSB_AIC();
             .hotBtn{
+              padding:0 .2rem;
               height:.6rem;
             }
           }
