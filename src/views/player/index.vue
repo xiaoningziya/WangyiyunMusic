@@ -44,7 +44,7 @@ export default defineComponent({
       lyric: '',
       logo: ''
     })
-    const showLyric = ref(false)
+    const showLyric = ref(true)
 
     onMounted(() => {
       songInfo.songId = route.query.songId as string
