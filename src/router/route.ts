@@ -63,5 +63,10 @@ export const route: Array<any> = [
     path: '/register', // 注册页
     name: 'Register',
     component: () => import('@/views/register/index.vue')
+  },
+  {
+    path: '/player', // 播放页
+    name: 'Player',
+    component: () => import('@/views/player/index.vue')
   }
 ]

@@ -1,6 +1,6 @@
 <template>
   <div class="search-list">
-    <div v-for="item in list" :key="item.id" class="search-item" @click="playMusic">
+    <div v-for="item in list" :key="item.id" class="search-item" @click="playMusic(item)">
       <span class="item-icon"><van-icon name="search" /></span>
       <span>{{ item.name }}</span>
     </div>
@@ -9,14 +9,16 @@
 <script setup lang="ts">
 // 搜索展示组件
 import { defineProps, onMounted, reactive, ref, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   list: Array
 })
 const { list } = toRefs(props)
+const router = useRouter()
 
-const playMusic = () => {
-  alert('播放功能待开放')
+const playMusic = (item: any) => {
+  router.push({ path: '/player', query: { songId: item.id } })
 }
 
 </script>
