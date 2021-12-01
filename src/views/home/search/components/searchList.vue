@@ -11,7 +11,7 @@
 import { defineProps, onMounted, reactive, ref, toRefs } from 'vue'
 
 const props = defineProps({
-  list: String
+  list: Array
 })
 const { list } = toRefs(props)
 

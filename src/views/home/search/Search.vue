@@ -15,7 +15,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
-import { defaultKeywords, searchMusic } from '@/api/search'
+import { defaultKeywords, searchMusic, hotSearchList, detailSearchList } from '@/api/search'
 import searchList from './components/searchList.vue'
 import hotList from './components/hotList.vue'
 import { debounce } from '@/util/index'
@@ -30,7 +30,8 @@ export default defineComponent({
     const placeholder = ref('')
     const keywords = ref('')
     const musicList = reactive({
-      list: []
+      list: [],
+      hotList: []
     })
     const searchResult = ref(false)
 
@@ -40,11 +41,17 @@ export default defineComponent({
           placeholder.value = res.data.data.showKeyword
         }
       })
+      // 简单热搜
+      methods.hotList()
     })
 
     const methods = {
       // 搜索防抖
       search: debounce(() => {
+        methods.searchFn()
+      }, 500),
+      // 搜索方法
+      searchFn () {
         if (keywords.value.length) {
           searchMusic({ keywords: keywords.value }).then((res) => {
             if (res.data.code === 200) {
@@ -60,8 +67,17 @@ export default defineComponent({
         } else {
           musicList.list = []
           searchResult.value = false
+          methods.hotList()
         }
-      }, 500)
+      },
+      // 简单热搜
+      hotList () {
+        hotSearchList().then((res) => {
+          if (res.data.code === 200) {
+            musicList.hotList = res.data.result.hots
+          }
+        })
+      }
     }
     return {
       placeholder,
