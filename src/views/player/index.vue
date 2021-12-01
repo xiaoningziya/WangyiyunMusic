@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="song-operation">
-      <!-- 滚动条+开始结束时间 -->
+      <!-- 滚动条+开始结束时间  -->
       <div class="song-slider"></div>
       <!-- 播放器 -->
       <div class="song-switch"></div>
@@ -44,7 +44,7 @@ export default defineComponent({
       lyric: '',
       logo: ''
     })
-    const showLyric = ref(false)
+    const showLyric = ref(true)
 
     onMounted(() => {
       songInfo.songId = route.query.songId as string
