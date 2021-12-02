@@ -49,7 +49,7 @@ export default defineComponent({
     const showLyric = ref(false)
 
     onMounted(() => {
-      songInfo.songId = route.query.songId as string
+      songInfo.songId = <string>route.query.songId
       methods.getMusicDetail()
     })
 
