@@ -18,7 +18,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
-import { defaultKeywords, searchMusic, hotSearchList, detailSearchList } from '@/api/search'
+import API from '@/api/api'
 import searchList from './components/searchList.vue'
 import hotList from './components/hotList.vue'
 import zoneList from './components/zoneList.vue'
@@ -44,7 +44,7 @@ export default defineComponent({
     const searchResult = ref(false)
 
     onMounted(() => {
-      defaultKeywords().then((res) => {
+      API.defaultKeywords().then((res: any) => {
         if (res.data.code === 200) {
           placeholder.value = res.data.data.showKeyword
         }
@@ -63,7 +63,7 @@ export default defineComponent({
       // 搜索方法
       searchFn () {
         if (keywords.value.length) {
-          searchMusic({ keywords: keywords.value }).then((res) => {
+          API.searchMusic({ keywords: keywords.value }).then((res: any) => {
             if (res.data.code === 200) {
               searchResult.value = true
               musicList.list = res.data.result.songs.map((item: {id: string, name: string}) => {
@@ -82,7 +82,7 @@ export default defineComponent({
       },
       // 简单热搜
       hotList () {
-        hotSearchList().then((res) => {
+        API.hotSearchList().then((res: any) => {
           if (res.data.code === 200) {
             musicList.hotList = res.data.result.hots
           }
@@ -90,7 +90,7 @@ export default defineComponent({
       },
       // 详细热搜
       moreHot () {
-        detailSearchList().then((res) => {
+        API.detailSearchList().then((res: any) => {
           if (res.data.code === 200) {
             musicList.hotList = res.data.data.map((item: {searchWord: string}) => {
               return {
@@ -184,7 +184,7 @@ export default defineComponent({
   .search-input {
     margin-left: .82rem;
     margin-right: .35rem;
-    /deep/ .van-search__content {
+    :deep .van-search__content {
       background: #fff;
       border-bottom: 1px solid #999;
     }

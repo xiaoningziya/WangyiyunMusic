@@ -29,7 +29,7 @@ export interface AxiosResponse {
 // 自定义返回值队列
 export interface CustomResponse {
   readonly status: number;
-  readonly data: object | null | undefined;
+  readonly data: object;
   readonly config?: object | null;
   readonly headers?: object | null;
   readonly request?: object | null;

@@ -19,7 +19,6 @@ import { useRouter } from 'vue-router'
 import { BANNER_TYPE } from '@/api/enum'
 import API from '@/api/api'
 import { defineComponent, reactive, onMounted, ref } from 'vue'
-import { defaultKeywords } from '@/api/search'
 
 export default defineComponent({
   name: 'Discovery',
@@ -30,7 +29,7 @@ export default defineComponent({
     const bannerData = reactive({list: []})
 
     onMounted(() => {
-      defaultKeywords().then((res) => {
+      API.defaultKeywords().then((res: any) => {
         if (res.data.code === 200) {
           placeholder.value = res.data.data.showKeyword
         }
@@ -54,7 +53,7 @@ export default defineComponent({
       jumppage (url:string) {
         window.location.href = url
       },
-      jumpsingerlist(){
+      jumpsingerlist () {
         router.push('/singerlist')
       }
     }
