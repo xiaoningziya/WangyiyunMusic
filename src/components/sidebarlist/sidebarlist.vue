@@ -41,7 +41,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { logout } from '@/api/index'
+import API from '@/api/api'
 import { useStore } from 'vuex'
 import { Toast } from 'vant'
 import { useRouter } from 'vue-router'
@@ -58,7 +58,7 @@ export default defineComponent({
     }
     const methods:IMethods = {
       loginout: (): void => {
-        logout({}).then((res: any) => {
+        API.logout({}).then((res: any) => {
           if (res.data.code === 200) {
             Toast('已退出账号')
             store.commit('CLEAR_USERINFO')

@@ -17,7 +17,7 @@
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { BANNER_TYPE } from '@/api/enum'
-import { banner } from '@/api/index'
+import API from '@/api/api'
 import { defineComponent, reactive, onMounted, ref } from 'vue'
 import { defaultKeywords } from '@/api/search'
 
@@ -45,7 +45,7 @@ export default defineComponent({
       },
       // 获取轮播图
       getbanner () {
-        banner({ type: BANNER_TYPE.iphone }).then((res: any) => {
+        API.banner({ type: BANNER_TYPE.iphone }).then((res: any) => {
           if (res.data.code === 200) {
             bannerData.list = res.data.banners
           }

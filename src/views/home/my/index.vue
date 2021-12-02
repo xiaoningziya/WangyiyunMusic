@@ -19,7 +19,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, inject, ref } from "vue";
-import { userDetail } from "@/api/index";
+import API from "@/api/api";
 
 export default defineComponent({
   name: "My",
@@ -31,7 +31,7 @@ export default defineComponent({
     const methods: IMethods = {
       // 获取用户信息
       getuserdetail: (): void => {
-        userDetail({ uid: userId }).then((res: any) => {
+        API.userDetail({ uid: userId }).then((res: any) => {
           console.log("res", res);
           if (res.data.code === 200) {
             let data = res.data;

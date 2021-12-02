@@ -32,5 +32,5 @@ export interface CustomResponse {
   readonly data: object | null | undefined;
   readonly config?: object | null;
   readonly headers?: object | null;
-  readonly request?: object | null
+  readonly request?: object | null;
 }

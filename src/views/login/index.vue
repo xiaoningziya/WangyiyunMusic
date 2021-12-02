@@ -13,7 +13,7 @@ import { defineComponent, onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { Toast } from 'vant'
 import { useStore } from 'vuex'
-import { loginCellphone } from '@/api/index'
+import API from '@/api/api'
 
 export default defineComponent({
   name: 'Login',
@@ -38,7 +38,7 @@ export default defineComponent({
           Toast('请输入完整信息')
           return
         }
-        loginCellphone(loginForm).then((res: any) => {
+        API.loginCellphone(loginForm).then((res: any) => {
           console.log('111', res)
           if (res.data.code === 200) {
             store.commit('SET_USERINFO', res.data)

@@ -47,7 +47,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { artistDesc, artistDetail } from '@/api/index'
+import API from '@/api/api'
 
 export default defineComponent({
   name: 'Singerinfo',
@@ -60,7 +60,7 @@ export default defineComponent({
     const methods: IMethods = {
       // 获取歌手描述
       getartistDesc (): void {
-        artistDesc({id: queryId}).then((res: any) => {
+        API.artistDesc({id: queryId}).then((res: any) => {
           if(res.data.code === 200){
             singerDes.content = res.data;
             console.log('获取歌手描述',res.data)
@@ -69,7 +69,7 @@ export default defineComponent({
       },
       // 获取歌手详情
       getartistDetail (): void {
-        artistDetail({id: queryId}).then((res: any) => {
+        API.artistDetail({id: queryId}).then((res: any) => {
           if(res.data.code === 200){
             singerData.content = res.data.data;
             console.log('获取歌手详情',res.data.data)

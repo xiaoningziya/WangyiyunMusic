@@ -51,7 +51,7 @@
 import { defineComponent, onMounted, computed, ref, reactive } from 'vue'
 import { Toast } from 'vant'
 import { useRouter } from 'vue-router'
-import { registerCellphone, captchaSent } from '@/api/index'
+import API from '@/api/api'
 
 export default defineComponent({
   name: 'Register',
@@ -79,7 +79,7 @@ export default defineComponent({
       sendcode: (): void => {
         const phoneReg = /^1\d{10}$/
         if (phoneReg.test(registerForm.phone)) {
-          captchaSent({ phone: registerForm.phone }).then((res: any) => {
+          API.captchaSent({ phone: registerForm.phone }).then((res: any) => {
             if (res.data.code === 200 && res.data.data === true) {
               methods.countDown()
             }
@@ -105,7 +105,7 @@ export default defineComponent({
       register: (): void => {
         const params = registerForm
         console.log('params', params)
-        registerCellphone(params).then((res: any) => {
+        API.registerCellphone(params).then((res: any) => {
           if (res.data.code === 200) {
             Toast('注册成功')
           }

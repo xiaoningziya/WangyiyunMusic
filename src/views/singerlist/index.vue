@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { ArtistList_TYPE, ArtistList_AREA} from '@/api/enum'
-import { artistList } from '@/api/index'
+import API from '@/api/api'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -37,7 +37,7 @@ export default defineComponent({
           type: ArtistList_TYPE['全部'],
           area: ArtistList_AREA['华语']
         }
-        artistList(reqParams).then((res: any) => {
+        API.artistList(reqParams).then((res: any) => {
           if(res.data.code === 200){
             singerData.list = res.data.artists;
           }
