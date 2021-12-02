@@ -184,7 +184,7 @@ export default defineComponent({
   .search-input {
     margin-left: .82rem;
     margin-right: .35rem;
-    :deep .van-search__content {
+    ::deep .van-search__content {
       background: #fff;
       border-bottom: 1px solid #999;
     }
