@@ -1,13 +1,13 @@
 <template>
   <div class="Singerlistwrap">
     <div class="scrollpage">
-      <div class="singerCard" v-for="item in singerData.list" :key="item.id">
+      <div v-for="item in singerData.list" :key="item.id" class="singerCard">
         <div class="avatbox" @click="jumpsongerinfo(item.id)">
           <img v-lazy="item.img1v1Url" alt="">
         </div>
         <div class="textbox">
           <div class="name" @click="jumpsongerinfo(item.id)">
-            {{item.name}}
+            {{ item.name }}
           </div>
           <div class="focusBtn">
             + 关注
@@ -26,9 +26,9 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Singerlist',
   setup () {
-    const router = useRouter();
+    const router = useRouter()
     const singerData = reactive({list: []})
-    const methods: IMethods = {
+    const methods = {
       getartistList (): void {
         const reqParams = {
           limit: 30,
@@ -39,7 +39,7 @@ export default defineComponent({
         }
         API.artistList(reqParams).then((res: any) => {
           if(res.data.code === 200){
-            singerData.list = res.data.artists;
+            singerData.list = res.data.artists
           }
         })
       },
@@ -50,7 +50,7 @@ export default defineComponent({
         })
       }
     }
-    methods.getartistList();
+    methods.getartistList()
     return {
       ...methods,
       singerData
