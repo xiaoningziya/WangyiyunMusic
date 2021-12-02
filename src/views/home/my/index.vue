@@ -24,7 +24,7 @@ import API from "@/api/api";
 export default defineComponent({
   name: "My",
   setup() {
-    const userId = inject("userId");
+    const userId = inject("userId") as string
     const backgroundUrl = ref("");
     const avatarUrl = ref("");
     const nickname = ref("");

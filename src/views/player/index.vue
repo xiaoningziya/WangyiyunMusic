@@ -8,7 +8,9 @@
     <div class="song-content" @click="lyricSwitch">
       <div v-show="!showLyric">
         <!-- 歌曲logo+转动效果（点击显示歌词） -->
-        <div class="song-logo"></div>
+        <div class="song-logo">
+          <van-image round width="100" height="100" :src="songInfo.logo" />
+        </div>
         <!-- 收藏等操作按钮 -->
         <div class="song-btn"></div>
       </div>
@@ -28,7 +30,7 @@
 <script lang="ts">
 // 搜索展示组件
 import { onMounted, reactive, ref, defineComponent } from 'vue'
-import { musicDetail } from '@/api/song'
+import API from '@/api/api'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
@@ -44,7 +46,7 @@ export default defineComponent({
       lyric: '',
       logo: ''
     })
-    const showLyric = ref(true)
+    const showLyric = ref(false)
 
     onMounted(() => {
       songInfo.songId = route.query.songId as string
@@ -53,11 +55,11 @@ export default defineComponent({
 
     const methods = {
       getMusicDetail () {
-        musicDetail({ ids: songInfo.songId }).then((res) => {
+        API.musicDetail({ ids: songInfo.songId }).then((res: any) => {
           if (res.data.code === 200) {
             songInfo.name = res.data.songs[0].name
             songInfo.singer = res.data.songs[0].ar[0].name
-            songInfo.logo = res.data.songs[0].al[0].picUrl
+            songInfo.logo = res.data.songs[0].al.picUrl
           }
         })
       },
@@ -90,6 +92,22 @@ export default defineComponent({
     }
   }
   .song-content {
+    height: 80%;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .song-logo {
+      animation: myRotate 5s linear infinite;
+    }
+    @keyframes myRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
 }
 </style>
