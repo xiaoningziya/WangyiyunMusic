@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 // 搜索展示组件
-import { defineProps, defineEmits, ref, toRefs } from 'vue'
+import { ref, toRefs } from 'vue'
 
 const props = defineProps({
   list: Array,

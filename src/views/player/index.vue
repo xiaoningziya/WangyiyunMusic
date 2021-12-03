@@ -9,7 +9,7 @@
       <div v-show="!showLyric">
         <!-- 歌曲logo+转动效果（点击显示歌词） -->
         <div class="song-logo">
-          <van-image round width="100" height="100" :src="songInfo.logo" />
+          <van-image round width="150" height="150" :src="songInfo.logo" />
         </div>
         <!-- 收藏等操作按钮 -->
         <div class="song-btn"></div>
@@ -99,6 +99,9 @@ export default defineComponent({
     justify-content: center;
     .song-logo {
       animation: myRotate 5s linear infinite;
+      transform: translate3d(0,0,0);
+      box-shadow: 0 0 4rem #f4f4f4;
+      border-radius: 50%;
     }
     @keyframes myRotate {
       0% {

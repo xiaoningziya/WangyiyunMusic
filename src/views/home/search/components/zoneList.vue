@@ -15,7 +15,7 @@
 </template>
 <script setup lang="ts">
 // 搜索展示组件
-import { defineProps, defineEmits, ref, toRefs } from 'vue'
+import { ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
