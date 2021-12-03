@@ -90,6 +90,11 @@ class API extends Abstract {
   musicDetail (params: ParamsInterface.Iids) {
     return this.getReq({ url: '/song/detail', params })
   }
+
+  // 更新头像
+  avatarUpload (data: ParamsInterface.IAvatarUpload): Promise<CustomResponse> {
+    return this.postReq({ url: '/avatar/upload', data })
+  }
 }
 // 单列模式返回对象
 let instance

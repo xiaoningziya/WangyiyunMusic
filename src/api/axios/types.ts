@@ -26,10 +26,15 @@ export interface AxiosResponse {
   statusText: string;
   config: AxiosRequest;
 }
+// 自定义类型
+interface CustomResponseData extends Object {
+  code: number; // 允许查找res.data.code不报错
+  [propName: string]: any; // 允许查找res.data的其他不确定的属性
+}
 // 自定义返回值队列
 export interface CustomResponse {
   readonly status: number;
-  readonly data: object;
+  readonly data: CustomResponseData;
   readonly config?: object | null;
   readonly headers?: object | null;
   readonly request?: object | null;

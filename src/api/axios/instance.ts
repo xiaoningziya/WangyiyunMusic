@@ -16,6 +16,7 @@ interface PendingType {
 const pending: Array<PendingType> = []
 const CancelToken = axios.CancelToken
 // axios 实例
+// axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 const instance = axios.create({
   timeout: 10000,
   responseType: 'json',

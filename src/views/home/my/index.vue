@@ -12,6 +12,11 @@
           <div class="nickName">
             {{ nickname }}
           </div>
+          <div class="upload">
+            <van-uploader :after-read="afterRead" >
+              点我上传
+            </van-uploader>
+          </div>
         </div>
       </div>
     </div>
@@ -28,6 +33,12 @@ export default defineComponent({
     const backgroundUrl = ref("");
     const avatarUrl = ref("");
     const nickname = ref("");
+    interface IFile {
+      content: string;
+      file: File;
+      message: string;
+      status: string
+    }
     const methods: IMethods = {
       // 获取用户信息
       getuserdetail: (): void => {
@@ -41,6 +52,24 @@ export default defineComponent({
           }
         });
       },
+      afterRead (resfile: IFile) {
+        console.log('上传',resfile)
+        API.avatarUpload({
+          imgFile: {
+            name: resfile.file.name,
+            data: resfile.content
+          }
+        }).then((res) => {
+          console.log("res", res);
+          if(res.data.code === 200){
+            
+          }
+          if(res.data.data){
+            
+          }
+
+        });
+      }
     };
     methods.getuserdetail();
     return {

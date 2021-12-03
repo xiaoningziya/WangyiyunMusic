@@ -49,3 +49,12 @@ export interface IKeywords {
 export interface Iids {
   ids: string
 }
+
+interface IImgFile {
+  name: string;
+  data: string;
+}
+export interface IAvatarUpload {
+  imgFile: IImgFile;
+  imgSize?: number;
+}
