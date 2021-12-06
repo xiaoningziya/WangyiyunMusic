@@ -55,6 +55,10 @@ interface IImgFile {
   data: string;
 }
 export interface IAvatarUpload {
-  imgFile: IImgFile;
+  readonly cookie: string;
   imgSize?: number;
+  imgX?: number;
+  imgY?: number;
+  timestamp?: number;
 }
+

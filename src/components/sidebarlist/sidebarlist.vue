@@ -3,7 +3,7 @@
   <div class="sidebarlistwrap">
     <div class="fixedUser">
       <div class="message">
-        <img :src="store.state.userInfo.profile.avatarUrl">
+        <img :src="store.state.avatarUrl">
         <div class="username">{{store.state.userInfo.account.userName}}</div>
       </div>
       <div class="sys">
