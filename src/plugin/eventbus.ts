@@ -9,7 +9,7 @@ const emitter = mitt()
 
 const EventBus = {
   // listen to an event
-  $on: (customEventName: string, callback: Handler) => {
+  $on: (customEventName: EventType, callback: Handler) => {
     emitter.on(customEventName, callback) 
   },
   // listen to all events
@@ -17,7 +17,7 @@ const EventBus = {
     emitter.on('*', callback) 
   },
   // fire an event
-  $emit: (customEventName: string, fireData: unknown) => {
+  $emit: (customEventName: EventType, fireData: unknown) => {
     emitter.emit(customEventName, fireData) 
   },
   // clearing all events
@@ -25,7 +25,7 @@ const EventBus = {
     emitter.all.clear() 
   },
   // unlisten
-  $off: (customEventName: string, callback: Handler) => {
+  $off: (customEventName: EventType, callback: Handler) => {
     emitter.off(customEventName, callback) 
   },
 }
