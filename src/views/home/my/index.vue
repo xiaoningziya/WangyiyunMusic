@@ -26,7 +26,7 @@
 import { defineComponent, inject, ref } from "vue";
 import API from "@/api/api";
 import { useStore } from 'vuex'
-import emitter from '../../../plugin/eventbus'
+import EventBus from '../../../plugin/eventbus'
 
 export default defineComponent({
   name: "My",
@@ -63,7 +63,7 @@ export default defineComponent({
       },
       // 上传头像的回调
       async afterRead (resfile: IFile) {
-        emitter.emit('changeLoadingStatus',true);
+        EventBus.$emit('changeLoadingStatus',true);
         const imgInfo = await methods.getImgSize(resfile.file);
         let formData = new FormData();
         formData.append('imgFile',resfile.file)
@@ -75,7 +75,7 @@ export default defineComponent({
           timestamp: Date.now()
         }
         API.avatarUpload(params,formData).then((res) => {
-          emitter.emit('changeLoadingStatus',false);
+          EventBus.$emit('changeLoadingStatus',false);
           if(res.data.code === 200){
             const newUrl: string = res.data.data.url
             store.commit('UPDATE_AVATARURL',newUrl)

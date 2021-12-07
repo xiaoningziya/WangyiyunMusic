@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import customLoading from './components/customLoading/customLoading.vue'
-import emitter from './plugin/eventbus.ts'
+import EventBus from './plugin/eventbus'
 
 export default defineComponent({
   components: {
@@ -13,7 +13,7 @@ export default defineComponent({
   },
   setup() {
     let flag = ref(false)
-    emitter.on('changeLoadingStatus',(status: boolean)=>{
+    EventBus.$on('changeLoadingStatus',(status: boolean) => {
       flag.value = status
     })
     return {
