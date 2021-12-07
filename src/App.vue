@@ -1,6 +1,27 @@
 <template>
     <router-view/>
+    <customLoading :showloading="flag" ></customLoading >
 </template>
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import customLoading from './components/customLoading/customLoading.vue'
+import emitter from './plugin/eventbus.ts'
+
+export default defineComponent({
+  components: {
+    customLoading
+  },
+  setup() {
+    let flag = ref(false)
+    emitter.on('changeLoadingStatus',(status: boolean)=>{
+      flag.value = status
+    })
+    return {
+      flag
+    }
+  },
+})
+</script>
 
 <style lang="less">
 *{
