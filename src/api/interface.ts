@@ -1,3 +1,6 @@
+interface IUserInfo {
+  uid: number | string;
+}
 export interface IBanner {
   type: number;
 }
@@ -17,8 +20,8 @@ export interface IArtistDetail {
 export interface IArtistTopSong {
   id: number | string;
 }
-export interface IUserDetail {
-  uid: number | string;
+export interface IUserDetail extends IUserInfo {
+  
 }
 export interface ILogout {
 
@@ -62,3 +65,11 @@ export interface IAvatarUpload {
   timestamp?: number;
 }
 
+export interface IUserUpdate {
+  gender: number | string
+  birthday: number
+  nickname: string
+  province: number
+  city: number
+  signature: string
+}

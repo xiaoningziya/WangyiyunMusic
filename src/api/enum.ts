@@ -21,3 +21,8 @@ export enum ArtistList_AREA {
   '韩国' = 16,
   '其他' = 0,
 }
+export enum IUserUpdate_GENDER {
+  '保密' = 0,
+  '男性' = 1,
+  '女性' = 2
+}

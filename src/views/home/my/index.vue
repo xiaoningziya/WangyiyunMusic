@@ -17,6 +17,7 @@
           <div class="nickName">
             {{ nickname }}
           </div>
+          <van-button style="padding:0 .1rem" plain hairline type="primary" size="small" @click="updateinfo">修改个人信息</van-button>
         </div>
       </div>
     </div>
@@ -26,6 +27,7 @@
 import { defineComponent, inject, ref } from "vue";
 import API from "@/api/api";
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import EventBus from '../../../plugin/eventbus'
 
 export default defineComponent({
@@ -33,6 +35,7 @@ export default defineComponent({
   setup() {
 
     const store = useStore();
+    const router = useRouter()
     const userId = inject("userId") as string
     const backgroundUrl = ref("")
     const avatarUrl = ref("")
@@ -99,6 +102,9 @@ export default defineComponent({
             }
           }
         })
+      },
+      updateinfo () {
+        router.push('/updateInfo')
       }
     };
 
@@ -142,7 +148,7 @@ export default defineComponent({
       z-index: 99;
       .userinfoCard {
         width: 100%;
-        height: 3rem;
+        height: 5rem;
         background: #fff;
         border-radius: 0.26rem;
         box-shadow: 0 0 0.2rem #f4f4f4;

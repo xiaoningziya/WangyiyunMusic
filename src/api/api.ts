@@ -95,6 +95,11 @@ class API extends Abstract {
   avatarUpload (params: ParamsInterface.IAvatarUpload, data: FormData): Promise<CustomResponse> {
     return this.postReq({ url: '/avatar/upload', params, data })
   }
+
+  // 更新用户信息
+  userUpdate (params: ParamsInterface.IUserUpdate): Promise<CustomResponse> {
+    return this.getReq({ url: '/user/update', params })
+  }
 }
 // 单列模式返回对象
 let instance

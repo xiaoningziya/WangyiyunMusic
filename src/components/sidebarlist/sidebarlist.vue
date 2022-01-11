@@ -3,8 +3,9 @@
   <div class="sidebarlistwrap">
     <div class="fixedUser">
       <div class="message">
-        <img :src="store.state.avatarUrl">
-        <div class="username">{{store.state.userInfo.account.userName}}</div>
+        <img v-if="store.state.avatarUrl" :src="store.state.avatarUrl">
+        <div v-else class="img"></div>
+        <div class="username">{{ userName }}</div>
       </div>
       <div class="sys">
         <van-icon name="enlarge" size=".46rem" />
@@ -34,7 +35,7 @@
           <van-cell icon="guide-o" title="单元格" is-link />
         </div>
       </div>
-      <!-- <van-button v-show="!isLogin" size="large" plain hairline type="primary" @click="gologin">用户登录</van-button> -->
+      <van-button v-show="!isLogin" size="large" plain hairline type="primary" @click="gologin">用户登录</van-button>
       <van-button class="logoutBtn" color="#fff" v-show="isLogin" size="large" plain hairline type="primary" @click="loginout">退出登录</van-button>
     </div>
   </div>
@@ -54,6 +55,9 @@ export default defineComponent({
     const computedGroup = {
       isLogin: computed((): boolean => {
         return Boolean(store?.state?.userInfo?.token)
+      }),
+      userName: computed((): boolean => {
+        return store?.state?.userInfo?.account?.userName || '未登录'
       })
     }
     const methods:IMethods = {
@@ -105,6 +109,12 @@ export default defineComponent({
         width:.46rem;
         height:.46rem;
         border-radius: 50%;
+      }
+      .img{
+        width:.46rem;
+        height:.46rem;
+        border-radius: 50%;
+        background: #ddd;
       }
       .username{
         font-size: .3rem;

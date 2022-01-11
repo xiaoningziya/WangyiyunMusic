@@ -13,7 +13,7 @@ export default defineComponent({
   },
   setup() {
     let flag = ref(false)
-    EventBus.$on('changeLoadingStatus',(status: boolean) => {
+    EventBus.$on('changeLoadingStatus',(status: any) => {
       flag.value = status
     })
     return {
