@@ -40,6 +40,7 @@ import { defineComponent, reactive, ref } from 'vue'
 import { IUserUpdate_GENDER } from '@/api/enum'
 import { useStore } from 'vuex'
 import API from '@/api/api'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'updateInfo',
@@ -51,8 +52,10 @@ export default defineComponent({
     // city: 城市id
     // signature：用户签名 -->
     const store = useStore();
+    const router = useRouter();
     const defaultdate: string = '1994-02-27';
     const defaultcity: string = '浙江 - - 杭州';
+    const userId = store?.state?.userId
     const submitLoading = ref(false);
     const formData = reactive({
       gender: '保密',
@@ -66,6 +69,16 @@ export default defineComponent({
     const columns = ['保密', '男性', '女性'];
 
     const methods: IMethods = {
+      // 获取用户信息
+      getuserdetail: (): void => {
+        API.userDetail({ uid: userId }).then((res) => {
+          if (res.data.code === 200) {
+            let data = res.data
+            formData.signature = data.profile.signature
+            formData.nickname = data.profile.nickname
+          }
+        });
+      },
       onConfirm (value :any, index:number) {
         formData.gender = value;
         showPicker.value = false;
@@ -82,11 +95,14 @@ export default defineComponent({
         API.userUpdate(result).then((res) => {
           console.log('res',res)
           submitLoading.value = false;
+          router.go(-1)
         }).catch((err) => {
           submitLoading.value = false;
         })
       }
     }
+
+    methods.getuserdetail()
 
     return {
       ...methods,

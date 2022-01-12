@@ -3,9 +3,9 @@
   <div class="sidebarlistwrap">
     <div class="fixedUser">
       <div class="message">
-        <img v-if="store.state.avatarUrl" :src="store.state.avatarUrl">
+        <img v-if="avatarUrl" :src="avatarUrl">
         <div v-else class="img"></div>
-        <div class="username">{{ userName }}</div>
+        <div class="username">{{ nickname }}</div>
       </div>
       <div class="sys">
         <van-icon name="enlarge" size=".46rem" />
@@ -41,7 +41,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, inject, ref } from 'vue'
 import API from '@/api/api'
 import { useStore } from 'vuex'
 import { Toast } from 'vant'
@@ -52,6 +52,9 @@ export default defineComponent({
   setup () {
     const store = useStore()
     const router = useRouter()
+    const avatarUrl = ref("")
+    const nickname = ref("")
+    const userId = inject("userId") as string
     const computedGroup = {
       isLogin: computed((): boolean => {
         return Boolean(store?.state?.userInfo?.token)
@@ -61,6 +64,15 @@ export default defineComponent({
       })
     }
     const methods:IMethods = {
+      getuserdetail: (): void => {
+        API.userDetail({ uid: userId }).then((res) => {
+          if (res.data.code === 200) {
+            let data = res.data
+            avatarUrl.value = data.profile.avatarUrl
+            nickname.value = data.profile.nickname
+          }
+        });
+      },
       loginout: (): void => {
         API.logout({}).then((res: any) => {
           if (res.data.code === 200) {
@@ -74,11 +86,17 @@ export default defineComponent({
         router.push('/login')
       }
     }
+    
+    methods.getuserdetail()
+    
     return {
       store,
       ...methods,
-      ...computedGroup
+      ...computedGroup,
+      avatarUrl,
+      nickname
     }
+
   }
 })
 </script>
@@ -140,6 +158,12 @@ export default defineComponent({
         overflow: hidden;
         margin-bottom:.2rem;
       }
+    }
+    /deep/ .van-cell__title{
+      text-align: left;
+    }
+    /deep/ .van-cell__left-icon{
+      margin-right: .2rem;
     }
     .logoutBtn{
       height:.8rem;
