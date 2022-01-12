@@ -111,6 +111,7 @@ export default defineComponent({
     .singerBG{
       width:100%;
       height:auto;
+      min-height: 6.8rem;
       img{
         width:100%;
         height:auto;

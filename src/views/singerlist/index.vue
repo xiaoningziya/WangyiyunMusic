@@ -3,7 +3,12 @@
     <div class="scrollpage">
       <div v-for="item in singerData.list" :key="item.id" class="singerCard">
         <div class="avatbox" @click="jumpsongerinfo(item.id)">
-          <img v-lazy="item.img1v1Url" alt="">
+          <van-image
+            class="img"
+            lazy-load
+            :src="item.img1v1Url"
+          />
+          <!-- <img class="img" v-lazy="item.img1v1Url" alt=""> -->
         </div>
         <div class="textbox">
           <div class="name" @click="jumpsongerinfo(item.id)">
@@ -80,7 +85,7 @@ export default defineComponent({
         height:.74rem;
         border-radius: 50%;
         overflow: hidden;
-        img{
+        .img{
           width:100%;
           height:auto;
         }
