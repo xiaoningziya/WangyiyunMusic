@@ -91,6 +91,11 @@ class API extends Abstract {
     return this.getReq({ url: '/song/detail', params })
   }
 
+  // 歌曲地址
+  getMusicUrl (params: any) {
+    return this.getReq({ url: '/song/url', params})
+  }
+
   // 更新头像
   avatarUpload (params: ParamsInterface.IAvatarUpload, data: FormData): Promise<CustomResponse> {
     return this.postReq({ url: '/avatar/upload', params, data })

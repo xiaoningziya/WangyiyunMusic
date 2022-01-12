@@ -14,7 +14,8 @@
 </template>
 <script setup lang="ts">
 // 搜索展示组件
-import { ref, toRefs } from 'vue'
+import { reactive, ref, toRefs } from 'vue'
+import { useStore } from 'vuex'
 
 const props = defineProps({
   list: Array,
@@ -24,8 +25,10 @@ const emit = defineEmits(['moreHot'])
 
 const { list, showMore } = toRefs(props)
 
+const store = useStore()
 const playMusic = () => {
-  alert('播放功能待开放')
+  alert('功能暂未开放')
+  // store.commit('UPDATE_SONGLIST', list)
 }
 
 // 更多热搜

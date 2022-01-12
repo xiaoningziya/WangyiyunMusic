@@ -10,15 +10,21 @@
 // 搜索展示组件
 import { onMounted, reactive, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 const props = defineProps({
   list: Array
 })
 const { list } = toRefs(props)
 const router = useRouter()
+const store = useStore()
 
 const playMusic = (item: any) => {
-  router.push({ path: '/player', query: { songId: item.id } })
+  // router.push({ path: '/player', query: { songId: item.id } })
+  
+  // let list = reactive(store.state.songList.concat(item))
+  store.commit('UPDATE_SONGLIST', [item])
+  store.commit('UPDATE_CURRENTSONG', item)
 }
 
 </script>

@@ -3,6 +3,8 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default createStore({
   state: {
+    songList: [], // 播放歌曲列表
+    currentSong: {}, // 当前播放歌曲
     userInfo: {}, // 用户信息
     userId: '',
     avatarUrl:'',
@@ -28,6 +30,14 @@ export default createStore({
     // 更新头像
     UPDATE_AVATARURL: (state, url) => {
       state.avatarUrl = url;
+    },
+    // 改变播放列表信息
+    UPDATE_SONGLIST: (state, list) => {
+      state.songList = list
+    },
+    // 改变当前播放歌曲
+    UPDATE_CURRENTSONG: (state, song) => {
+      state.currentSong = song
     }
   },
   actions: {
