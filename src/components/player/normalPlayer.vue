@@ -34,7 +34,7 @@ import API from '@/api/api'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
-  name: 'Player',
+  name: 'normalPlayer',
   components: {
   },
   setup () {

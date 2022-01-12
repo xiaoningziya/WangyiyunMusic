@@ -1,15 +1,18 @@
 <template>
     <router-view/>
     <customLoading :showloading="flag" ></customLoading >
+    <Player />
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import customLoading from './components/customLoading/customLoading.vue'
+import Player from './components/player/index.vue'
 import EventBus from './plugin/eventbus'
 
 export default defineComponent({
   components: {
-    customLoading
+    customLoading,
+    Player
   },
   setup() {
     let flag = ref(false)
