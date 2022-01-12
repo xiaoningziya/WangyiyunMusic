@@ -5,26 +5,43 @@
         <img :src="backgroundUrl" alt="" />
       </div>
       <div class="contentPage">
-        <div class="userinfoCard">
+        <div class="userinfoCard Default_Card_BoxShadow">
           <div class="avatBox">
-            <img :src="avatarUrl" alt="" />
-          </div>
-          <div class="upload">
             <van-uploader :after-read="afterRead" >
-              <van-button style="padding:0 .1rem" plain hairline type="primary" size="small">编辑头像</van-button>
+              <img :src="avatarUrl" alt="" />
             </van-uploader>
           </div>
           <div class="nickName">
             {{ nickname }}
           </div>
-          <van-button style="padding:0 .1rem" plain hairline type="primary" size="small" @click="updateinfo">修改个人信息</van-button>
+          <div class="signature">
+            {{ signature }}
+          </div>
+          <van-button class="changebtn" style="padding:0 .1rem" plain hairline type="primary" size="small" @click="updateinfo">
+            <van-icon class="editicon" size=".4rem" name="edit" /> 修改个人信息
+          </van-button>
+        </div>
+        <div class="menuMyList Default_Card_BoxShadow">
+          <div :class="['child', index>3 ? 'childMT' : '']" v-for="(item,index) in menumylist.list" :key="index">
+            <van-icon color="#666" size=".46rem" :name="item.icon" />
+            <div class="text">{{ item.text }}</div>
+          </div>
+        </div>
+        <div class="menuMyLike Default_Card_BoxShadow">
+          <div class="starWrap">
+            <van-icon color="#fff" size=".5rem" name="like" />
+          </div>
+          <div class="likeinfo">
+            <div class="title">我喜欢的音乐</div>
+            <div class="limit">118首</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, inject, ref } from "vue";
+import { defineComponent, inject, reactive, ref } from "vue";
 import API from "@/api/api";
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
@@ -40,6 +57,34 @@ export default defineComponent({
     const backgroundUrl = ref("")
     const avatarUrl = ref("")
     const nickname = ref("")
+    const signature = ref('')
+    const menumylist = reactive({
+      list:[{
+        icon: 'play-circle', //<van-icon name="music" /><van-icon name="play-circle" />
+        text: '最近播放',
+      }, {
+        icon: 'bag',//<van-icon name="bag" />
+        text: '本地/下载',
+      },  {
+        icon: 'gem',//<van-icon name="gem" />
+        text: '云盘',
+      },  {
+        icon: 'shopping-cart', //<van-icon name="<van-icon name="shopping-cart" />" />
+        text: '已购',
+      }, {
+        icon: 'friends', //<van-icon name="<van-icon name="friends" />" />
+        text: '我的好友',
+      },  {
+        icon: 'star', //<van-icon name="star" />
+        text: '收藏和赞',
+      },  {
+        icon: 'service', //<van-icon name="service" />
+        text: '我的播客',
+      },  {
+        icon: 'bookmark', //<van-icon name="bookmark" />
+        text: '音乐罐子',
+      }]
+    })
     interface IFile {
       content: string;
       file: File;
@@ -61,6 +106,7 @@ export default defineComponent({
             backgroundUrl.value = data.profile.backgroundUrl
             avatarUrl.value = data.profile.avatarUrl
             nickname.value = data.profile.nickname
+            signature.value = data.profile.signature
           }
         });
       },
@@ -115,6 +161,8 @@ export default defineComponent({
       backgroundUrl,
       avatarUrl,
       nickname,
+      signature,
+      menumylist
     };
   },
 });
@@ -124,12 +172,13 @@ export default defineComponent({
 .mywrap {
   width: 100%;
   height: 100%;
-  background: #f6f6f6;
+  background: #eee;
   overflow-x: hidden;
   overflow-y: scroll;
   .scrollView {
     width: 100%;
     height: auto;
+    position: relative;
     .userBG {
       width: 100%;
       height: auto;
@@ -143,15 +192,14 @@ export default defineComponent({
       height: auto;
       padding: 0 0.32rem;
       box-sizing: border-box;
-      position: relative;
-      top: -1rem;
+      position: absolute;
+      left:0;
+      top: 3rem;
       z-index: 99;
       .userinfoCard {
         width: 100%;
-        height: 5rem;
-        background: #fff;
+        height: 3rem;
         border-radius: 0.26rem;
-        box-shadow: 0 0 0.2rem #f4f4f4;
         .DF_FDC_AIC();
         .avatBox {
           width: 1.3rem;
@@ -161,7 +209,7 @@ export default defineComponent({
           position: relative;
           top: -0.6rem;
           overflow: hidden;
-          border:1px solid #000;
+          border:1px solid transparent;
           img {
             width: 100%;
             height: 100%;
@@ -174,9 +222,81 @@ export default defineComponent({
         .nickName {
           font-size: 0.36rem;
           font-weight: bold;
-          margin-top: 0.3rem;
           position: relative;
-          top: -0.5rem;
+          top: -0.4rem;
+        }
+        .signature{
+          font-size: 0.26rem;
+          color: #555;
+          position: relative;
+          top: -0.2rem;
+        }
+        /deep/ .changebtn{
+          position: relative;
+          top: 0;
+          border-color: transparent !important;
+        }
+      }
+      
+      .menuMyList{
+        width:100%;
+        height:auto;
+        margin-top:.4rem;
+        border-radius: 0.26rem;
+        display: flex;
+        flex-wrap: wrap;
+        padding:.3rem 0;
+        box-sizing: border-box;
+        .child{
+          width:25%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .text{
+            font-size: .2rem;
+            // margin-top: .1rem;
+            padding:.06rem 0;
+            color: #333333;
+          }
+        }
+        .childMT{
+          margin-top: .32rem;
+        }
+      }
+      .menuMyLike{
+        width:100%;
+        height:auto;
+        margin-top:.4rem;
+        display: flex;
+        align-items: center;
+        padding:.15rem .3rem;
+        box-sizing: border-box;
+        border-radius: 0.26rem;
+        .starWrap{
+          width:.6rem;
+          height:.6rem;
+          background: rgba(0,0,0,.5);
+          border-radius: .1rem;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: .2rem;
+        }
+        .likeinfo{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          .title{
+            font-size: .26rem;
+            color:#111111;
+          }
+          .limit{
+            margin-top: .03rem;
+            font-size: .2rem;
+            color:#444444;
+          }
         }
       }
     }
